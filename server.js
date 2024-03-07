@@ -7,7 +7,9 @@ const  tipoUsuarioController  = require('./controller/tipoUsuarioController');
 const pecasController = require('./controller/pecasController');
 const servicosController = require('./controller/servicosController');
 const salvarServicosController = require('./controller/salvarServicosController');
-const salvarPecasController = require('./controller/salvarpecasController')
+const salvarPecasController = require('./controller/salvarpecasController');
+const dotenv = require('dotenv');
+dotenv.config();
 
 
 app.use(express.urlencoded({extended: true}));
