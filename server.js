@@ -17,7 +17,7 @@ dotenv.config();
 app.use(express.urlencoded({extended: true}));
 app.post('/usuarios', usuariosController.postUsuarios);
 app.get('/usuarios/id', usuariosController.getUsuarios);
-app.get('/tipoUsuarios', tipoUsuarioController.getTipoUsuario);
+app.get('/tipoUsuarios',async (req,res)=>{tipoUsuarioController.getTipoUsuario});
 app.get('/pecas',pecasController.getPecas);
 app.get('/servicos', servicosController.getServicos);
 app.get('/', loginController.getLogin);
