@@ -2,7 +2,7 @@ const client = require('../database/db')
 
 
 exports.getTipoUsuario = async (req, res) => {
-     try {
+    try {
         const tipos  = await client.query('select * from public.tipos_pessoa')
         console.log(tipos.rows);
         res.status(200).json(
@@ -11,4 +11,5 @@ exports.getTipoUsuario = async (req, res) => {
     } catch (error) {
         console.log(error)
     }
+   
 }

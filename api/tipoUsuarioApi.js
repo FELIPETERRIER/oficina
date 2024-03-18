@@ -1,5 +1,3 @@
-const { request } = require("express")
-
-async function qualUsuario(){
-    const newReq = Request() 
+function usuarioEscolhido(){
+    switch(req == 'pessoa_tipo')
 }
