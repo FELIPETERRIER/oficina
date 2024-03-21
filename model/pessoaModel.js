@@ -13,6 +13,19 @@ const pessoa = {
         } catch (error) {
             throw error;
         }
+    },
+
+    savePessoaModel: async(objPessoa) => {
+        try {
+            let valores = Object.values(objPessoa);
+            valores[1] = valores[1].replaceAll('.', '').replaceAll('-', '');
+
+            const salvandoPessoa = await db.query('INSERT INTO pessoas(nome, cpf) VALUES ($1, $2) RETURNING id', valores);
+
+            return salvandoPessoa.rows
+        } catch (error) {
+            throw error
+        }
     }
 }
 

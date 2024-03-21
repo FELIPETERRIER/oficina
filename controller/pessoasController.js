@@ -2,7 +2,7 @@ const pesM = require('../model/pessoaModel');
 
 const getPessoas = async (req, res) => {
     try {
-        
+
         const todasPessoas = await pesM.getPessoasModel();
         res.status(200).json(todasPessoas);
 
@@ -18,23 +18,20 @@ const getPessoas = async (req, res) => {
 const savePessoas = async (req, res) => {
     const pessoa = {...req.body}
     try {
-        const sqlInsert = 'INSERT INTO pessoas(nome, cpf) VALUES ($1, $2) RETURNING id';
-        let valores = Object.values(pessoa);
-        valores[1] = valores[1].replaceAll('.', '').replaceAll('-', '');
+        const result = await pesM.savePessoaModel(pessoa);
 
-        const result = await db.query(sqlInsert, valores)
-
-        console.log(result.rows);
-
-        res.status(200).json(
+        res.status(201).json(
             {
-                dados: result.rows
+                dados: result
             }
         );
 
     } catch (error) {
-        console.log(error)
-    }
+        console.log(error);
+        res.status(500).json({
+            codigoErro: 500,
+            mensagem: error
+        });    }
     
 }
 

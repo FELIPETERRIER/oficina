@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3001;
+
 const loginController = require('./controller/loginController');
 const usuariosController = require('./controller/usuariosController');
 const tipoUsuarioController  = require('./controller/tipoUsuarioController');
@@ -17,10 +18,12 @@ app.use(express.urlencoded({extended: true}));
 
 app.get('/tipoUsuarios',tipoUsuarioController.getTipoUsuario);
 app.get('/pessoas',pessoasController.getPessoas);
-app.post('/pessoas',pessoasController.savePessoas)
+app.post('/pessoas',pessoasController.savePessoas);
 
+// app.put
+// app.delete 
 app.post('/usuarios', usuariosController.postUsuarios);
-app.get('/usuarios/id', usuariosController.getUsuarios);
+app.get('/usuarios/:id', usuariosController.getUsuarios);
 app.get('/pecas',pecasController.getPecas);
 app.get('/servicos', servicosController.getServicos);
 app.get('/', loginController.getLogin);
