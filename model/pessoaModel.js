@@ -1,5 +1,6 @@
 const db = require('../configs/database')
 
+
 const pessoa = {
     getPessoasModel: async () => {
         try {
@@ -22,11 +23,13 @@ const pessoa = {
 
             const salvandoPessoa = await db.query('INSERT INTO pessoas(nome, cpf) VALUES ($1, $2) RETURNING id', valores);
 
-            return salvandoPessoa.rows
+            return salvandoPessoa
         } catch (error) {
             throw error
         }
     }
+
 }
 
 module.exports = pessoa
+

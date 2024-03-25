@@ -16,7 +16,11 @@ dotenv.config();
 app.use(express.json())
 app.use(express.urlencoded({extended: true}));
 
-app.get('/tipoUsuarios',tipoUsuarioController.getTipoUsuario);
+app.get('/tipoUsuarios',tipoUsuarioController.getTpUsuario);
+app.post('/tipoUsuarios',tipoUsuarioController.saveTpUsuario);
+app.delete('/tipoUsuarios',tipoUsuarioController.delTpUsuario)
+
+
 app.get('/pessoas',pessoasController.getPessoas);
 app.post('/pessoas',pessoasController.savePessoas);
 
