@@ -1,4 +1,8 @@
-// db = require('../configs/database');
+db = require('../configs/database');
+
+
+
+
 const tpUsuario = require('../model/tipoUsuarioModel')
 
 const getTpUsuario = async (req, res) => {
@@ -17,7 +21,7 @@ const getTpUsuario = async (req, res) => {
     }
 }
 const saveTpUsuario = async (req, res) => {
-    const usuario = {...req.body}
+    const usuario = { ...req.body }
     try {
 
         const novoUsuario = await tpUsuario.saveTipoUsuarioModel(usuario);
@@ -36,26 +40,48 @@ const saveTpUsuario = async (req, res) => {
 
     }
 }
-    const delTpUsuario = async (req, res) => {
-        const usuario = {...req.body}
-        try {
-    
-            const delUsuario = await tpUsuario.deleteTipoUsuarioModel(usuario);
+const delTpUsuario = async (req, res) => {
+    const deleteUsuario = { ...req.params }
+    try {
+
+        const delUsuario = await tpUsuario.deleteTipoUsuarioModel(deleteUsuario);
+        res.status(200).json(
+            {
+                dados: delUsuario
+            }
+        );
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            codigoErro: 500,
+            mensagem: error
+        });
+
+    };
+}
+const putTpUsuario = async (req, res) => {
+    const updateUsuario = { ...req.body}
+
+    try {
+
+            const putUsuario = await tpUsuario.putTipoUsuarioModel(updateUsuario);
             res.status(200).json(
                 {
-                    dados: delUsuario
+                    dados: putUsuario
                 }
             );
-    
-        } catch (error) {
+
+    } catch (error) {
             console.log(error);
             res.status(500).json({
                 codigoErro: 500,
                 mensagem: error
             });
-    
-        }
+
+    }
 }
 
 
-module.exports = {getTpUsuario,saveTpUsuario,delTpUsuario}
+
+    module.exports = { getTpUsuario, saveTpUsuario, delTpUsuario, putTpUsuario }

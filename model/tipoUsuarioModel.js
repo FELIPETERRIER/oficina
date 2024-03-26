@@ -30,13 +30,33 @@ const tipoUsuario = {
         
     },
     deleteTipoUsuarioModel: async (id) => {
-        console.log('sembanana')
+        
         try {
+            
             let delValoresUsuario = Object.values(id)
-            const delTipoUsuario  = await db.query('DELETE from tipos_pessoa WHERE id = '+delValoresUsuario);
-            console.log("sucesso");
+            console.log(delValoresUsuario)
+            const delTipoUsuario  = await db.query('DELETE from tipos_pessoa WHERE id = $1', delValoresUsuario  );
+            console.log(delTipoUsuario);
 
             return delTipoUsuario
+            
+           
+        } catch (error) {
+            throw error;
+        }
+        
+    },
+    
+    putTipoUsuarioModel: async (id) => {
+        
+        try {
+            
+            let putValoresUsuario = Object.values(id);
+            console.log(putValoresUsuario)
+            const putTipoUsuario  = await db.query('update tipos_pessoa set funcao = $2 where id = $1 ',putValoresUsuario);
+            console.log(putTipoUsuario);
+
+            return putTipoUsuario
             
            
         } catch (error) {
